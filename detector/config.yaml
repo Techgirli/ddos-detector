@@ -1,0 +1,41 @@
+server:
+  dashboard_host: "0.0.0.0"
+  dashboard_port: 8080
+  dashboard_refresh_seconds: 3
+
+nginx:
+  log_path: "/var/log/nginx/hng-access.log"
+
+slack:
+  webhook_url: "MY_SLACK_WEBHOOK_URL_HERE" 
+
+detection:
+
+  window_seconds: 60
+
+  baseline_window_minutes: 30        
+  baseline_recalc_interval: 60      
+  baseline_min_samples: 10          
+  baseline_floor_mean: 1.0          
+  baseline_floor_stddev: 0.5        
+
+
+  zscore_threshold: 3.0             
+  rate_multiplier_threshold: 5.0    
+
+  
+  error_rate_multiplier: 3.0        
+  error_zscore_threshold: 2.0       
+
+  hourly_min_seconds: 600          
+
+banning:
+  
+  backoff_schedule:
+    - 600
+    - 1800
+    - 7200
+    - -1    # -1 means permanent
+
+audit:
+  log_path: "/var/log/detector/audit.log"

@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+*.log
+*.egg-info/
+dist/
+build/
+.DS_Store
+screenshots/*.png
+docs/*.png
+restructure.sh
+hng-key-pair.pem
