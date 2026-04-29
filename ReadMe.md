@@ -10,7 +10,7 @@
 | --------------------- | ---------------------------------------- |
 | **Metrics Dashboard** | `http://3.234.19.0:8080/`                |
 | **Server IP**         | `3.234.19.0`                             |
-| **Nextcloud**         | `http://3.234.19.0` (IP only, no domain) |
+| **Nextcloud**         | `http://3.234.19.0`                      |
 
 Blog Post: https://dev.to/techgirli/how-i-built-a-real-time-ddos-detection-engine-with-python-docker-and-iptablestags-devops-417g
 
@@ -142,7 +142,7 @@ iptables -D INPUT -s <IP> -j DROP
 
 ### 1. Provision a VPS
 
-Minimum: 2 vCPU, 2 GB RAM. Ubuntu 22.04 recommended.
+Minimum: 2 vCPU, 2 GB RAM. Ubuntu 22.04.
 
 ### 2. Point DNS at the server
 
@@ -170,8 +170,8 @@ docker compose version
 ### 4. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/hng-anomaly-detector.git
-cd hng-anomaly-detector
+git clone https://github.com/Techgirli/ddos-detector.git
+cd ddos-detector
 ```
 
 ### 5. Configure environment
@@ -179,6 +179,7 @@ cd hng-anomaly-detector
 ```bash
 cp .env.example .env
 nano .env
+add .env to .gitignore
 # Fill in: DB passwords, Nextcloud admin password, SERVER_IP
 ```
 
@@ -196,6 +197,7 @@ nano .env
 
 ```bash
 sudo ufw allow 80/tcp
+sudo ufw allow 22/tcp
 sudo ufw allow 8080/tcp
 sudo ufw enable
 ```
@@ -203,6 +205,7 @@ sudo ufw enable
 ### 8. Build and start the stack
 
 ```bash
+docker compose pull
 docker compose up -d --build
 
 # Watch logs
@@ -230,7 +233,7 @@ docker exec hng-detector iptables -L INPUT -n
 
 ### 10. Verify Nextcloud is accessible
 
-Open `http://YOUR_SERVER_IP` in a browser. You should see the Nextcloud login page.
+Open `http://3.234.19.0/` in a browser. You should see the Nextcloud login page.
 
 ---
 
@@ -312,10 +315,10 @@ docker exec hng-detector cat /var/log/detector/audit.log
 
 ## Blog Post
 
-[Link to blog post — add after publishing]
+[https://dev.to/techgirli/how-i-built-a-real-time-ddos-detection-engine-with-python-docker-and-iptablestags-devops-417g]
 
 ---
 
 ## GitHub Repository
 
-[https://github.com/YOUR_USERNAME/hng-anomaly-detector](https://github.com/YOUR_USERNAME/hng-anomaly-detector)
+[https://github.com/YOUR_USERNAME/hng-anomaly-detector](https://github.com/Techgirli/ddos-detector)
